@@ -383,7 +383,7 @@ CREATE POLICY "Admins can update all recipes"
 -- Insert yourself as the first admin
 -- REPLACE 'your-email@example.com' with your actual email
 INSERT INTO admin_users (email, name) 
-VALUES ('your-email@example.com', 'Admin')
+VALUES ('jennifer.c.schultz@gmail.com', 'Admin')
 ON CONFLICT (email) DO NOTHING;
 
 -- =====================================================
@@ -436,7 +436,9 @@ SELECT
     c.email as contributor_email,
     c.display_name as contributor_name,
     ARRAY_AGG(DISTINCT ra.athlete_name) as athlete_names,
-    ARRAY_AGG(DISTINCT unnest(ra.sports)) as all_sports,
+    (SELECT ARRAY_AGG(DISTINCT sport) 
+     FROM recipe_athletes ra2, unnest(ra2.sports) as sport 
+     WHERE ra2.recipe_id = r.id) as all_sports,
     COUNT(DISTINCT ri.id) as image_count,
     r.story IS NOT NULL as has_story
 FROM recipes r
