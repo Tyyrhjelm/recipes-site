@@ -21,8 +21,7 @@ export function Step3Form() {
     });
 
     setCurrentStep(4);
-    // For now, redirect to a placeholder (we'll build step 4 later)
-    router.push('/submit/step-4-placeholder');
+    router.push('/submit/step-4');
   };
 
   const handleBack = () => {
@@ -41,7 +40,7 @@ export function Step3Form() {
     });
     
     setCurrentStep(4);
-    router.push('/submit/step-4-placeholder');
+    router.push('/submit/step-4');
   };
 
   return (
