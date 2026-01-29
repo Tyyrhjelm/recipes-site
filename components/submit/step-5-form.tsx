@@ -99,7 +99,7 @@ export function Step5Form() {
     });
 
     setCurrentStep(6);
-    router.push('/submit/step-6-placeholder');
+    router.push('/submit/step-6');
   };
 
   const handleBack = () => {
@@ -118,7 +118,7 @@ export function Step5Form() {
     });
 
     setCurrentStep(6);
-    router.push('/submit/step-6-placeholder');
+    router.push('/submit/step-6');
   };
 
   return (
