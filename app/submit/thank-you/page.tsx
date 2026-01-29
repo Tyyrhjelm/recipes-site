@@ -59,6 +59,12 @@ export default async function ThankYouPage() {
 
           {/* Action buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <Link href="/dashboard">
+              <Button variant="outline" size="lg" className="w-full sm:w-auto">
+                View My Recipes
+              </Button>
+            </Link>
+
             <Link href="/submit/step-1">
               <Button size="lg" className="w-full sm:w-auto">
                 Submit Another Recipe
@@ -66,7 +72,7 @@ export default async function ThankYouPage() {
             </Link>
             
             <Link href="/">
-              <Button variant="outline" size="lg" className="w-full sm:w-auto">
+              <Button variant="ghost" size="lg" className="w-full sm:w-auto">
                 Return Home
               </Button>
             </Link>
