@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { FormLayout } from './form-layout';
+import { FormLayout } from '@/components/submit/form-layout';
 import { Button } from '@/components/ui/button';
 
 export function Step4PlaceholderContent() {
