@@ -121,11 +121,11 @@ export interface RecipeFormData {
     team_or_program?: string;
   }[];
   
-  // Step 1: Contributor
-  contributor_name: string;
+  // Add all the other fields...
+  contributor_name?: string;
   contributor_relationship?: string;
   
-  // Step 2: Meaning
+  // Step 2: Reflective
   what_you_love?: string;
   when_you_make_it?: string;
   
@@ -133,19 +133,20 @@ export interface RecipeFormData {
   story?: string;
   
   // Step 4: Recipe
-  title: string;
+  title?: string;
   original_author?: string;
-  ingredients: Ingredient[];
-  instructions: string[]; // Will be converted to Instruction[]
+  ingredients?: { amount: string; item: string }[];
+  instructions?: string[];
   tips_substitutions?: string;
   
-  // Step 5: Images (handled separately)
+  // Step 5: Photos
+  photos_count?: number;
   
   // Step 6: Consent
-  consent_publish: boolean;
-  consent_name_attribution: boolean;
-  consent_story_inclusion: boolean;
-  consent_photo_inclusion: boolean;
+  consent_publish?: boolean;
+  consent_name_attribution?: boolean;
+  consent_story_inclusion?: boolean;
+  consent_photo_inclusion?: boolean;
 }
 
 // View types
