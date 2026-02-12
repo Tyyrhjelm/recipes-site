@@ -165,7 +165,7 @@ export interface RecipeListView {
 
 // Full recipe with relations for display
 export interface RecipeWithRelations extends Recipe {
-  contributor?: Contributor;
-  athletes: RecipeAthlete[];
-  images: RecipeImage[];
+  contributors?: Contributor;
+  recipe_athletes?: RecipeAthlete[];
+  recipe_images?: RecipeImage[];
 }
