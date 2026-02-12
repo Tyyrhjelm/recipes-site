@@ -6,6 +6,13 @@ const SESSION_COOKIE_NAME = 'cookbook_session';
 const SESSION_MAX_AGE = 30 * 24 * 60 * 60; // 30 days in seconds
 
 /**
+ * Normalize email to lowercase to ensure case-insensitive matching
+ */
+function normalizeEmail(email: string): string {
+  return email.toLowerCase().trim();
+}
+
+/**
  * Create a session for a contributor
  */
 export async function createSession(contributorId: string): Promise<string> {
@@ -92,7 +99,7 @@ export async function isAdminSession(): Promise<boolean> {
   const { data } = await supabase
     .from('admin_users')
     .select('id')
-    .eq('email', contributor.email)
+    .eq('email', normalizeEmail(contributor.email))
     .single();
 
   return !!data;
@@ -154,7 +161,7 @@ export async function storeMagicLinkToken(email: string, token: string): Promise
   await supabase
     .from('magic_link_tokens')
     .insert({
-      email,
+      email: normalizeEmail(email),
       token,
       expires_at: expiresAt.toISOString(),
       used: false,
@@ -200,12 +207,13 @@ export async function verifyMagicLinkToken(token: string): Promise<string | null
  */
 export async function getOrCreateContributor(email: string): Promise<Contributor> {
   const supabase = createServiceClient();
+  const normalizedEmail = normalizeEmail(email);
 
   // Try to find existing contributor
   const { data: existing } = await supabase
     .from('contributors')
     .select('*')
-    .eq('email', email)
+    .eq('email', normalizedEmail)
     .single();
 
   if (existing) {
@@ -215,7 +223,7 @@ export async function getOrCreateContributor(email: string): Promise<Contributor
   // Create new contributor
   const { data: newContributor, error } = await supabase
     .from('contributors')
-    .insert({ email })
+    .insert({ email: normalizedEmail })
     .select()
     .single();
 
